@@ -1,18 +1,17 @@
 
 import jwt from "jsonwebtoken";
 const auth=async(req,res,next)=>{
-    // let token;
-    // const jwToken=req.headers["authorization"];
+    let token;
+    const jwToken=req.headers["authorization"];
     
-    // if(jwToken !== undefined){
-    //     token=jwToken.split(" ")[1];
-    // }
-    // if(jwToken === undefined){
-    //     res.status(404).json({message:"No Token"})
-    // }
+    if(jwToken !== undefined){
+        token=jwToken.split(" ")[1];
+    }
+    if(jwToken === undefined){
+        res.status(404).json({message:"No Token"})
+    }
 
-    const token=req.cookies.token
-    console.log("Incoming Cookie:",req.cookies);
+    
     if(!token){
         return res.status(401).json({message:"Please provide a Cookie"})
     }

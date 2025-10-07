@@ -1,6 +1,4 @@
-
-
-import Booking from "./Booking/booking";
+import Booking from "./Booking/Booking";
 import Navbar from "./nav";
 
 
@@ -10,6 +8,7 @@ function newTrip() {
       {/* Navbar */}
       <Navbar />
       <Booking/>
+      
       </div>
   );
 }

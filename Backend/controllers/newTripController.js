@@ -1,27 +1,78 @@
 import mongoose from "mongoose";
 
-import TripDetails from "../Model/TripDetailsModule.js";
+import TripDetailsModule from "../Model/TripDetailsModule.js";
 
 
-export const createTrip= async(req,res) =>{
+export const createTrip= async (req,res)=>{
+    try {
+        const {
+            name,
+            start,
+            end,
+            startDate,
+            endDate,
+            adults,
+            children,
+            infants,
+            assistance,
+            assistanceType,
+          } = req.body;
+      
+          
+          const trip = new TripDetailsModule({
+            userId:req.user.id,
+            name,
+            start,
+            end,
+            startDate: new Date(startDate),
+            endDate: new Date(endDate),
+            adults,
+            children,
+            infants,
+            assistance,
+            assistanceType,
+          });
+      
+          
+          const savedTrip = await trip.save();
+          res.status(201).json(savedTrip);
+        
+    } catch (error) {
+        res.status(400).json({ error: error.message });
+    }
+}
+
+
+export const getTrip= async (req,res)=>{
+  try {
+    const details= await TripDetailsModule.find({userId:req.user.id})
+    res.status(200).json(details);
+
+  } catch (error) {
+    res.status(500).json({message:"ERROR"})
     
-    const {name,start,end,startDate,endDate,assistance}=req.body;
+  }
+}
+
+
+export const deleteTrip= async (req,res)=>{
+  try {
+    const {id}=req.params;
+    const delet=await TripDetailsModule.findByIdAndDelete({
+      _id:id,
+      userId:req.user.id
+      
+    });
+
+    if(!delet){
+      res.status(404).json({message:"Not founded"})
+    }
     
-   console.log(req.user)
-
-   const newTrip= new TripDetails({
-    userId:req.user.id,
-    name,
-    start,
-    end,
-    startDate: Date(startDate),
-    endDate:Date(endDate),
-    assistance
-   })
-   
-   await newTrip.save();
-   console.log(newTrip)
-
-   res.json({message:"Successfully added"})
-
+      res.status(200).json({message:"Deleted Successfully"})
+    
+    
+  } catch (error) {
+    res.status(500).json({message:"ERROR"})
+    console.log(error)
+  }
 }

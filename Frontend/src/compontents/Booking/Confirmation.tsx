@@ -1,7 +1,9 @@
 // src/components/Confirmation.jsx
 import React from "react";
 
+
 export default function Confirmation({ formData, onBack, onCancel, onConfirm, theme, tickImg }) {
+
   return (
     <div>
       <h2 className="text-2xl text-center font-semibold mb-1" style={{ color: theme }}>
@@ -55,7 +57,7 @@ export default function Confirmation({ formData, onBack, onCancel, onConfirm, th
           <button onClick={onCancel} className="px-4 py-2 rounded-md text-white" style={{ backgroundColor: "#ef4444" }}>
             Cancel
           </button>
-          <button onClick={onConfirm} className="px-4 py-2 rounded-md text-white flex items-center gap-2" style={{ backgroundColor: theme }}>
+          <button onClick={onConfirm}  className="px-4 py-2 rounded-md text-white flex items-center gap-2" style={{ backgroundColor: theme }}>
             {/* small tick inside button for visual affordance */}
             <img src={tickImg} alt="tick" className="w-4 h-4 object-contain" />
             <span>Confirm</span>

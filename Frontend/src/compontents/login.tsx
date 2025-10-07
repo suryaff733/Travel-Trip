@@ -24,6 +24,7 @@ const Login = () => {
     }
     else{
       alert("Login Failed")
+      console.log(Error)
     }
 
 

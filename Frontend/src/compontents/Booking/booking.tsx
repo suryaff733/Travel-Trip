@@ -7,7 +7,12 @@ import { useState } from "react";
 import TravelAssistance from "./TravelAssistance";
 import Confirmation from "./Confirmation";
 
+
+
+
+
 export default function Booking() {
+  const token=localStorage.getItem('token')
   const THEME = "#304766";
   const TICK_IMG = "https://assets.ccbp.in/frontend/react-js/travel-trip-steps-successfully-completed-img.png";
 
@@ -27,12 +32,20 @@ export default function Booking() {
     assistanceType: "",
   });
 
+
+
+
+
+  
   // Generic input handler (inputs, selects, checkboxes)
-  //@ts-ignore
-  const handleChange = (e) => {
+  
+  const handleChange = async(e) => {
+    //@ts-ignore
     const { name, value, type, checked } = e.target;
     setFormData((p) => ({ ...p, [name]: type === "checkbox" ? checked : value }));
     setErrors((p) => ({ ...p, [name]: "" }));
+
+   
   };
 
   // Guests updater
@@ -101,7 +114,39 @@ export default function Booking() {
     setStep(target);
   };
 
-  const handleConfirm = () => setConfirmed(true);
+  const handleConfirm = async(e:React.FormEvent) => {
+    e.preventDefault()
+    const {name,
+      start,
+      end,
+      startDate,
+      endDate,
+      adults,
+      children,
+      infants,
+      assistance,
+      assistanceType}=formData
+    const res= await fetch("http://localhost:5005/api/user/newTrip",{
+      method:"POST",
+      headers: {
+        "Content-Type": "application/json",
+        Authorization: `Bearer ${token}`,
+      },
+      body:JSON.stringify({name,end,startDate,start,endDate,adults,children,infants,assistance,assistanceType})
+    })
+    
+    const data=await res.json()
+    console.log(data)
+    if(res.ok){
+      setConfirmed(true)
+      alert("Successfully Added")
+    }
+    else{
+      alert("Error")
+      console.log(Error)
+    }
+
+  };
 
   const handleCancel = () => {
     setFormData({

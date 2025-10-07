@@ -1,16 +1,24 @@
 import { Router } from "express";
 import { loginUser, signupUser } from "../controllers/userController.js";
 import auth from "../middleware/auth.js";
-import { createTrip } from "../controllers/newTripController.js";
-import cookieParser from "cookie-parser"
+
+import { createTrip,  deleteTrip,  getTrip } from "../controllers/newTripController.js";
+import rateLimit from "express-rate-limit";
+
 const route=Router();
 
+const authLimit = rateLimit({
+    windowMs: 5 * 60 * 1000,
+    max: 10
+})
 
 
-route.post("/signup",signupUser);
+route.post("/signup",authLimit, signupUser);
+route.post("/login", authLimit,loginUser);
 
-route.post("/login",loginUser);
 
-route.use(auth)
-route.post("/newTrip",createTrip)
+
+route.post("/newTrip",auth,createTrip)
+route.get("/getTrips",auth,getTrip)
+route.delete("/deleteTrip/:id",auth,deleteTrip)
 export default route

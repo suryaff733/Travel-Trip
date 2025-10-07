@@ -54,13 +54,13 @@ export const loginUser = async (req, res) => {
       { expiresIn: "1h" }
     );
    //backend cookie storing
-    res.cookie("token",token,{
-      httpOnly:true,
-      secure:false,
-      sameSite:"lax",
-      maxAge:3600000
-    })
-    console.log("Set-Cookie header:",res.getHeaders()["set-cookie"])
+    // res.cookie("token",token,{
+    //   httpOnly:true,
+    //   secure:false,
+    //   sameSite:"lax",
+    //   maxAge:3600000
+    // })
+    // console.log("Set-Cookie header:",res.getHeaders()["set-cookie"])
     
     res.json({ message: "Login successful", token});
 
