@@ -20,7 +20,8 @@ const Login = () => {
 
     if(res.ok){
       localStorage.setItem("token",data.token);
-      navigate('/')
+     
+      navigate('/home')
     }
     else{
       alert("Login Failed")
@@ -31,6 +32,8 @@ const Login = () => {
 
 
   }
+
+
 
 
   return (
@@ -94,5 +97,9 @@ const Login = () => {
     </div>
   );
 };
+
+
+
+
 
 export default Login;

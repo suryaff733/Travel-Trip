@@ -1,4 +1,4 @@
-import Booking from "./Booking/Booking";
+import Booking from "./Booking/booking";
 import Navbar from "./nav";
 
 

@@ -14,6 +14,7 @@ app.use(express.json())
 app.use(cookieParser())
 app.use(route)
 const url=process.env.URL
+console.log(url)
 
 app.use("/api/user",route)
 
@@ -31,6 +32,7 @@ const connectDB=async ()=>{
     app.listen(5005,async(req,res)=>{
         try{
             await initDB(url);
+            
             console.log("server Started")
         }catch(error){
             console.log(error)

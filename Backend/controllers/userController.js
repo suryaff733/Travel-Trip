@@ -63,6 +63,7 @@ export const loginUser = async (req, res) => {
     // console.log("Set-Cookie header:",res.getHeaders()["set-cookie"])
     
     res.json({ message: "Login successful", token});
+    
 
   } catch (error) {
     res.status(500).json({ message: "Error in login", error: error.message });

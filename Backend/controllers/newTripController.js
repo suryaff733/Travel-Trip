@@ -54,7 +54,15 @@ export const getTrip= async (req,res)=>{
   }
 }
 
-
+export const getName= async (req,res)=>{
+  try {
+    const username=await req.user.email;
+    res.status(200).json(username)
+    
+  } catch (error) {
+    res.status(500).json({message:"ERROR"})
+  }
+}
 export const deleteTrip= async (req,res)=>{
   try {
     const {id}=req.params;

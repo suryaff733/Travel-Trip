@@ -1,10 +1,30 @@
+import { useState } from "react";
 import { Link,useNavigate } from "react-router";
+
 
 function Navbar() {
   const navigate = useNavigate();
+  const [username,setUsername] = useState([]);
+
+  const fetchDetails= async()=>{
+    const token = localStorage.getItem("token") || "";
+    const res= await fetch("http://localhost:5005/api/user/getName",{
+        method:"GET",
+        headers:{
+            "Content-type":"application/json",
+            Authorization:`Bearer ${token}`
+        }
+    })
+    if(res.ok){
+        const Data= await res.json();
+        setUsername(Data)
+    }
+  }
+fetchDetails();
+  
   const logoutHandle = () => {
     localStorage.removeItem("token");
-    navigate("/login")
+    navigate("/")
   };
 
   return (
@@ -15,14 +35,18 @@ function Navbar() {
         style={{ fontFamily: "Caveat, cursive" }}
         
       >
-        <Link to="/">Travel Trip</Link>
+        <Link to="/home">Travel Trip</Link>
       </h1>
 
       {/* Links */}
-      <div className="flex gap-6 text-sm md:text-base">
-        <Link to="/" className="font-semibold hover:underline">Home</Link>
-        <Link to="/my-trips" className="hover:underline">My Trips</Link>
-        
+      <div className="flex justify-center gap-6 text-sm md:text-base">
+        <Link to="/home" className="font-semibold hover:underline">Home</Link>
+        <Link to="/my-trips" className="hover:underline">My Trips</Link>        
+      </div>
+      
+
+      <div className="flex gap-6 text-sm md:text-base ">
+        <p><span className="font-semibold">Currently us:</span> {username}</p>
       </div>
 
       {/* Logout Button */}

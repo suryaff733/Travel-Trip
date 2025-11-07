@@ -1,0 +1,33 @@
+services:
+  backend:
+    build: ./backend
+    container_name: travel-backend
+    restart: always
+    env_file:
+      - ./backend/.env
+    depends_on:
+      - db
+    ports:
+      - "5005:5005"
+    
+
+  frontend:
+    build: ./frontend
+    container_name: travel-frontend
+    restart: always
+    depends_on:
+      - backend
+    ports:
+      - "5173:5173"
+
+  db:
+    image: mongo:6
+    container_name: travel-db
+    restart: always
+    ports:
+      - "27017:27017"
+    volumes:
+      - mongo_data:/data/db
+
+volumes:
+  mongo_data:
