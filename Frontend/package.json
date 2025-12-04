@@ -13,6 +13,7 @@
     "@tailwindcss/vite": "^4.1.13",
     "boto3": "^0.0.1",
     "cookies": "^0.9.1",
+    "dotenv": "^17.2.3",
     "fetch": "^1.1.0",
     "lucide": "^0.544.0",
     "react": "^19.1.1",
@@ -23,6 +24,7 @@
   },
   "devDependencies": {
     "@eslint/js": "^9.33.0",
+    "@types/node": "^24.10.1",
     "@types/react": "^19.1.10",
     "@types/react-dom": "^19.1.7",
     "@vitejs/plugin-react": "^5.0.0",

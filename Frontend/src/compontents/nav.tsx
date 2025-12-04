@@ -8,7 +8,7 @@ function Navbar() {
 
   const fetchDetails= async()=>{
     const token = localStorage.getItem("token") || "";
-    const res= await fetch("https://travel-trip-gkwe.onrender.com/api/user/getName",{
+    const res= await fetch(`${process.env.url}/api/user/getName`,{
         method:"GET",
         headers:{
             "Content-type":"application/json",

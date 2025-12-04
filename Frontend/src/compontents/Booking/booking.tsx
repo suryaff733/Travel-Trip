@@ -126,7 +126,7 @@ export default function Booking() {
       infants,
       assistance,
       assistanceType}=formData
-    const res= await fetch("https://travel-trip-gkwe.onrender.com/api/user/newTrip",{
+    const res= await fetch(`${process.env.url}/api/user/newTrip`,{
       method:"POST",
       headers: {
         "Content-Type": "application/json",

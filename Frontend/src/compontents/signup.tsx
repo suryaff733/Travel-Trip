@@ -13,7 +13,7 @@ const Signup = () => {
   const handle=async (e: React.FormEvent)=>{
     e.preventDefault();
 
-    const res = await fetch("https://travel-trip-gkwe.onrender.com/api/user/signup",{
+    const res = await fetch(`${process.env.url}/api/user/signup`,{
       method:"POST",
       headers:{"Content-type":"application/json"},
       body:JSON.stringify({username,email,password})
