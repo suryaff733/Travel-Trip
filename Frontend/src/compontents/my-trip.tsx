@@ -9,7 +9,7 @@ function MyTrip() {
 
   const fetchDetails= async()=>{
     const token = localStorage.getItem("token") || "";
-    const res= await fetch("http://localhost:5005/api/user/getTrips",{
+    const res= await fetch("https://travel-trip-gkwe.onrender.com/api/user/getTrips",{
         method:"GET",
         headers:{
             "Content-type":"application/json",
@@ -25,7 +25,7 @@ function MyTrip() {
 
   const deletTrip= async(id) =>{
     const token=localStorage.getItem('token')
-    const res= await fetch(`http://localhost:5005/api/user/deleteTrip/${id}`,{
+    const res= await fetch(`https://travel-trip-gkwe.onrender.com/api/user/deleteTrip/${id}`,{
         method:"DELETE",
         headers:{
             "Content-type":"application/json",
