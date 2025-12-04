@@ -18,7 +18,7 @@ const auth=async(req,res,next)=>{
     try{
        const payload= jwt.verify(token,process.env.JWT_SECRET);
                 req.user=payload;
-                console.log(token)
+                
                 next();      
     }catch(e){
         res.status(404).json({message:"No Token"})

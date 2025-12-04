@@ -14,7 +14,6 @@ app.use(express.json())
 app.use(cookieParser())
 app.use(route)
 const url=process.env.URL
-console.log(url)
 
 app.use("/api/user",route)
 
