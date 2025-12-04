@@ -7,17 +7,21 @@ const Login = () => {
   const [email,setEmail]=useState("");
   const [password,setPassword]=useState("");
   const navigate=useNavigate();
+  const baseUrl = import.meta.env.VITE_B_URL;
+
+  
   
 
 
   const handlAPI=async(e:React.FormEvent)=>{
     e.preventDefault();
 
-    const res= await fetch(`${process.env.url}/login`,{
+    const res= await fetch(`${baseUrl}/login`,{
       method:"POST",
       headers:{"Content-Type":"application/json"},
       body:JSON.stringify({email,password})
     })
+    
     const data=await res.json();
 
     if(res.ok){
@@ -36,7 +40,7 @@ const Login = () => {
   }
 
 
-
+  
 
   return (
     <div className="flex items-center justify-center min-h-screen bg-gray-50">
@@ -86,6 +90,7 @@ const Login = () => {
         {/* Login Button */}
         <button className="w-full bg-blue-900 text-white py-2 rounded-md hover:bg-blue-800 transition" onClick={handlAPI}>
           Login
+          
         </button>
 
         {/* Switch to Signup */}
@@ -98,7 +103,10 @@ const Login = () => {
       </div>
     </div>
   );
-};
+}
+
+
+;
 
 
 

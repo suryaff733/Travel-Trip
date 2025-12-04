@@ -8,12 +8,13 @@ const Signup = () => {
   const [password,setPassword]=useState("")
   const [email,setEmail]=useState("")
   const navigate=useNavigate()
+  const baseUrl = import.meta.env.VITE_B_URL;
 
 
   const handle=async (e: React.FormEvent)=>{
     e.preventDefault();
 
-    const res = await fetch(`${process.env.url}/api/user/signup`,{
+    const res = await fetch(`${baseUrl}/api/user/signup`,{
       method:"POST",
       headers:{"Content-type":"application/json"},
       body:JSON.stringify({username,email,password})

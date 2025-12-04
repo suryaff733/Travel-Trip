@@ -5,10 +5,11 @@ import { Link,useNavigate } from "react-router";
 function Navbar() {
   const navigate = useNavigate();
   const [username,setUsername] = useState([]);
+  const baseUrl = import.meta.env.VITE_B_URL;
 
   const fetchDetails= async()=>{
     const token = localStorage.getItem("token") || "";
-    const res= await fetch(`${process.env.url}/api/user/getName`,{
+    const res= await fetch(`${baseUrl}/api/user/getName`,{
         method:"GET",
         headers:{
             "Content-type":"application/json",

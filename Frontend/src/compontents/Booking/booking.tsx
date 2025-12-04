@@ -17,6 +17,7 @@ export default function Booking() {
   const TICK_IMG = "https://assets.ccbp.in/frontend/react-js/travel-trip-steps-successfully-completed-img.png";
 
   const [step, setStep] = useState(1);
+  const baseUrl = import.meta.env.VITE_B_URL;
   const [confirmed, setConfirmed] = useState(false);
   const [errors, setErrors] = useState({});
   const [formData, setFormData] = useState({
@@ -126,7 +127,7 @@ export default function Booking() {
       infants,
       assistance,
       assistanceType}=formData
-    const res= await fetch(`${process.env.url}/api/user/newTrip`,{
+    const res= await fetch(`${baseUrl}/api/user/newTrip`,{
       method:"POST",
       headers: {
         "Content-Type": "application/json",

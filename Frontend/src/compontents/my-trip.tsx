@@ -6,10 +6,12 @@ import Trips from './Triplist/Trips';
 
 function MyTrip() {
   const [trips, setTrips] = useState([]);
+  const baseUrl = import.meta.env.VITE_B_URL;
+  
 
   const fetchDetails= async()=>{
     const token = localStorage.getItem("token") || "";
-    const res= await fetch(`${process.env.url}/api/user/getTrips`,{
+    const res= await fetch(`${baseUrl}/api/user/getTrips`,{
         method:"GET",
         headers:{
             "Content-type":"application/json",
@@ -25,7 +27,7 @@ function MyTrip() {
 
   const deletTrip= async(id) =>{
     const token=localStorage.getItem('token')
-    const res= await fetch(`${process.env.url}/api/user/deleteTrip/${id}`,{
+    const res= await fetch(`${baseUrl}/api/user/deleteTrip/${id}`,{
         method:"DELETE",
         headers:{
             "Content-type":"application/json",
