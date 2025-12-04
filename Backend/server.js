@@ -19,7 +19,7 @@ app.use("/api/user",route)
 
 
 
-app.get("/",()=>{
+app.get("/",(req,res)=>{
     res.status(200).json({message:"asdasdasd"})
 })
 if(!url){
