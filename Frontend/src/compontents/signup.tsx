@@ -22,7 +22,7 @@ const Signup = () => {
 
     const data= await res.json();
      if(res.ok){
-      navigate("/home")
+      navigate("/")
       alert("Account Created Successfully")
      }
      else{
