@@ -2,7 +2,29 @@
 import React from "react";
 
 
-export default function Confirmation({ formData, onBack, onCancel, onConfirm, theme, tickImg }) {
+interface FormData {
+  name: string;
+  start: string;
+  end: string;
+  startDate: string;
+  endDate: string;
+  adults: number;
+  children: number;
+  infants: number;
+  assistance: boolean;
+  assistanceType?: string;
+}
+
+interface ConfirmationProps {
+  formData: FormData;
+  onBack: () => void;
+  onCancel: () => void;
+  onConfirm: () => void;
+  theme: string;
+  tickImg: string;
+}
+
+export default function Confirmation({ formData, onBack, onCancel, onConfirm, theme, tickImg }: ConfirmationProps) {
 
   return (
     <div>

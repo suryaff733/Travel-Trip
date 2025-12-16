@@ -50,8 +50,7 @@ export default function Booking() {
   };
 
   // Guests updater
-  //@ts-ignore
-  const updateGuests = (field, delta) => {
+  const updateGuests = (field: keyof typeof formData, delta: number) => {
     setFormData((p) => {
       let next = p[field] + delta;
       if (field === "adults") next = Math.max(1, next);
